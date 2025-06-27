@@ -18,8 +18,8 @@ I'm committing to solving coding problems **every day for 100 days** to improve 
 
 ## 🔗 Problem Sources
 
-- [LeetCode](https://leetcode.com)
-- [HackerRank](https://hackerrank.com)
+- [LeetCode]([https://leetcode.com](https://leetcode.com/u/MOHAMMED_SHAJITH/))
+- [HackerRank]([https://hackerrank.com](https://www.hackerrank.com/profile/MOHAMMED_SHAJITH))
 
 ## 📅 Progress
 

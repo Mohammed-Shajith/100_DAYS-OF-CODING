@@ -16,10 +16,10 @@ I'm committing to solving coding problems **every day for 100 days** to improve 
 - Java ☕ / C++ 💻 (where needed)
 
 
-## 🔗 Problem Sources
+## 🔗 My Profiles
 
-- [LeetCode]((https://leetcode.com/u/MOHAMMED_SHAJITH/))
-- [HackerRank]((https://www.hackerrank.com/profile/MOHAMMED_SHAJITH))
+- 🌐 [LeetCode Profile](https://leetcode.com/u/MOHAMMED_SHAJITH/)
+- 🌐 [HackerRank Profile](https://www.hackerrank.com/profile/MOHAMMED_SHAJITH)
 
 ## 📅 Progress
 

@@ -25,11 +25,11 @@ I'm committing to solving coding problems **every day for 100 days** to improve 
 
 I update this repo daily with my solution for each day.
 
-| Day | Problem | Language | Status |
-|-----|---------|----------|--------|
-| 1   |         |          |        |
-| 2   | ...     | ...      |        |
-| ... | ...     | ...      | ...    |
+| Day |      Problem    | Language   | Status |
+|-----|-----------------|----------  |--------|
+| 1   |    project work |   py       |  Done  |
+| 2   | ...             | ...        |        |
+| ... | ...             | ...        | ...    |
 
 ## 🏁 Goal
 

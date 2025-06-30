@@ -25,11 +25,11 @@ I'm committing to solving coding problems **every day for 100 days** to improve 
 
 I update this repo daily with my solution for each day.
 
-| Day |        Problem    | Language   | Status |
-|-----|-------------------|----------  |--------|
-| 1   |      project work |   py       |  Done  |
-| 2   |  streamlit-project|   py       |        |
-| ... |   ...             |            | ...    |
+| Day |        Problem    | Language   |  File        | Date |
+|-----|-------------------|----------  |--------------|------|
+| 1   |      project work |   py       | score.py     | 28/06|
+| 2   |  streamlit-project|   py       | stscore.py   | 29/06|
+| 3   |     leetcode      |   py       | leetcode.txt | 30/06|
 
 ## 🏁 Goal
 

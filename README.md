@@ -30,6 +30,7 @@ I update this repo daily with my solution for each day.
 | 1   |      project work |   py       | score.py     | 28/06|
 | 2   |  streamlit-project|   py       | stscore.py   | 29/06|
 | 3   |     leetcode      |   py       | leetcode.txt | 30/06|
+| 4   |    project work   |   py       | main.py      | 01/07|
 
 ## 🏁 Goal
 

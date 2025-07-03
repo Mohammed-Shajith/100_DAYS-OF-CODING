@@ -120,5 +120,22 @@ class Solution(object):
                 nums[i] = small[i // 2]
             else:
                 nums[i] = large[i // 2]
-
+03/07
+# 3304. Find the K-th Character in String Game I
+class Solution(object):
+    def kthCharacter(self, k):
+        """
+        :type k: int
+        :rtype: str
+        """
+        word = "a"
+        
+        while len(word) < k:
+            next_part = ""
+            for c in word:
+                next_char = chr((ord(c) - ord('a') + 1) % 26 + ord('a'))
+                next_part += next_char
+            word += next_part
+        
+        return word[k - 1]
 

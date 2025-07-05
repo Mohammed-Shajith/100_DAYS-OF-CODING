@@ -180,3 +180,22 @@ class Solution(object):
                 down = up + 1
 
         return max(up, down)
+05/07
+# 1394. Find Lucky Integer in an Array
+class Solution(object):
+    def findLucky(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: int
+        """
+        from collections import Counter
+
+        freq = Counter(arr)
+        result = -1
+
+        for num in freq:
+            if freq[num] == num:
+                result = max(result, num)
+
+        return result
+

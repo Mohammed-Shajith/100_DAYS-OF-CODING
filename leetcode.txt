@@ -309,4 +309,40 @@ class Solution(object):
 
         return length
 
+08/07
+# 1751. Maximum Number of Events That Can Be Attended II
+class Solution(object):
+    def maxValue(self, events, k):
+        """
+        :type events: List[List[int]]
+        :type k: int
+        :rtype: int
+        """
+        events.sort()
+        n = len(events)
 
+        # Sort events by start time
+        starts = [event[0] for event in events]
+
+        next_event = [0] * n
+        for i in range(n):
+            lo, hi = i + 1, n
+            while lo < hi:
+                mid = (lo + hi) // 2
+                if events[mid][0] > events[i][1]:
+                    hi = mid
+                else:
+                    lo = mid + 1
+            next_event[i] = lo
+
+        dp = [[0] * (k + 1) for _ in range(n + 1)]
+
+        for i in range(n - 1, -1, -1):
+            for j in range(1, k + 1):
+                # Skip current event
+                skip = dp[i + 1][j]
+                # Take current event
+                take = events[i][2] + dp[next_event[i]][j - 1]
+                dp[i][j] = max(skip, take)
+
+        return dp[0][k]

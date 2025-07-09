@@ -1,6 +1,6 @@
 # 💯 100 Days of Coding Challenge
 
-Welcome to my **100 Days of Coding Challenge** repository! 🚀 
+Welcome to my **100 Days of Coding Challenge** repository! 
 I'm committing to solving coding problems **every day for 100 days** to improve my skills, stay consistent, and prepare for interviews or competitions.
 
 ##  About the Challenge
@@ -13,7 +13,7 @@ I'm committing to solving coding problems **every day for 100 days** to improve 
 ## 🛠 Languages Used
 
 - Python 🐍 (main language)
-- Java ☕ / C++ 💻 (where needed)
+- Java ☕ / C++  (where needed)
 
 
 ## 🔗 My Profiles
@@ -38,6 +38,7 @@ I update this repo daily with my solution for each day.
 | 9   |     leetcode      |   py       | leetcode.txt | 06/07|
 | 10  |     leetcode      |   py       | leetcode.txt | 07/07|
 | 11  |     leetcode      |   py       | leetcode.txt | 08/07|
+| 12  |     leetcode      |   py       | leetcode.txt | 09/07|
 ## 🏁 Goal
 
 To complete 100 days of continuous learning, strengthen algorithmic thinking, and build a powerful problem-solving habit.

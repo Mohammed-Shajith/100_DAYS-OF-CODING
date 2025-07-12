@@ -456,3 +456,64 @@ class Solution:
         for i in range(n):
             if count[i] == max_booked:
                 return i
+12/07
+# 1900. The Earliest and Latest Rounds Where Players Compete
+
+class Solution(object):
+    def earliestAndLatest(self, n, firstPlayer, secondPlayer):
+        """
+        :type n: int
+        :type firstPlayer: int
+        :type secondPlayer: int
+        :rtype: List[int]
+        """
+        memo = {}
+
+        def dfs(players):
+            key = tuple(players)
+            if key in memo:
+                return memo[key]
+
+            left, right = 0, len(players) - 1
+            while left < right:
+                a, b = players[left], players[right]
+                if (a == firstPlayer and b == secondPlayer) or (a == secondPlayer and b == firstPlayer):
+                    return (1, 1)
+                left += 1
+                right -= 1
+
+            results = []
+            def build_next(i, j, new_players):
+                if i > j:
+                    results.append(tuple(sorted(new_players)))
+                    return
+                if i == j:
+                    build_next(i + 1, j - 1, new_players + [players[i]])
+                    return
+
+                a, b = players[i], players[j]
+                if (a == firstPlayer or a == secondPlayer) and (b != firstPlayer and b != secondPlayer):
+                    build_next(i + 1, j - 1, new_players + [a])
+                elif (b == firstPlayer or b == secondPlayer) and (a != firstPlayer and a != secondPlayer):
+                    build_next(i + 1, j - 1, new_players + [b])
+                elif (a == firstPlayer and b == secondPlayer) or (a == secondPlayer and b == firstPlayer):
+                    return
+                else:
+                    build_next(i + 1, j - 1, new_players + [a])
+                    build_next(i + 1, j - 1, new_players + [b])
+
+            build_next(0, len(players) - 1, [])
+
+            earliest = float('inf')
+            latest = float('-inf')
+            for nxt in results:
+                e, l = dfs(nxt)
+                earliest = min(earliest, e + 1)
+                latest = max(latest, l + 1)
+
+            memo[key] = (earliest, latest)
+            return memo[key]
+
+        return list(dfs(tuple(range(1, n + 1))))
+
+

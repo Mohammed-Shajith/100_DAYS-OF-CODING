@@ -540,5 +540,20 @@ class Solution(object):
                 j += 1
 
         return match_count
+14/07
+# 1290. Convert Binary Number in a Linked List to Integer
+
+class Solution(object):
+    def getDecimalValue(self, head):
+        """
+        :type head: Optional[ListNode]
+        :rtype: int
+        """
+        num = 0
+        while head:
+            num = (num << 1) | head.val  
+            head = head.next
+        return num
+
 
 

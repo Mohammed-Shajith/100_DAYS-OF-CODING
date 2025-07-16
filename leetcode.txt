@@ -579,7 +579,29 @@ class Solution(object):
                     has_consonant = True
 
         return has_vowel and has_consonant
-
+15/07
+# 3201. Find the Maximum Length of Valid Subsequence I
+class Solution(object):
+    def maximumLength(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        cnt_even = cnt_odd = 0     
+        dp_even  = dp_odd  = 0     
+        
+        for num in nums:
+            if num & 1:            
+                cnt_odd += 1
+                dp_odd  = max(dp_odd, dp_even + 1)
+            else:                  
+                cnt_even += 1
+                dp_even = max(dp_even, dp_odd + 1)
+        
+        len_same = max(cnt_even, cnt_odd)     
+        len_alt  = max(dp_even, dp_odd)       
+        
+        return max(len_same, len_alt)
 
 
 

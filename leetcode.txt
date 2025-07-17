@@ -602,6 +602,28 @@ class Solution(object):
         len_alt  = max(dp_even, dp_odd)       
         
         return max(len_same, len_alt)
+17/04
+# 3202. Find the Maximum Length of Valid Subsequence II
+ class Solution(object):
+    def maximumLength(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        n = len(nums)
+        dp = [{} for _ in range(n)]
+        max_len = 1  
+
+        for i in range(n):
+            for j in range(i):
+                r = (nums[j] + nums[i]) % k
+                prev_len = dp[j].get(r, 1)  
+                dp[i][r] = max(dp[i].get(r, 1), prev_len + 1)
+                max_len = max(max_len, dp[i][r])
+
+        return max_len
+
 
 
 

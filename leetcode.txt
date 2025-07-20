@@ -754,3 +754,61 @@ class Solution(object):
                 result.append(f)
 
         return result
+20/07
+# 1948. Delete Duplicate Folders in System
+from collections import defaultdict
+
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.path = []
+        self.serial = ""
+        self.to_delete = False
+
+class Solution(object):
+    def deleteDuplicateFolder(self, paths):
+        """
+        :type paths: List[List[str]]
+        :rtype: List[List[str]]
+        """
+        root = TrieNode()
+        
+        for path in paths:
+            node = root
+            for folder in path:
+                if folder not in node.children:
+                    node.children[folder] = TrieNode()
+                node = node.children[folder]
+            node.path = path
+        
+        serial_map = defaultdict(list)
+        
+        def serialize(node):
+            if not node.children:
+                return ""
+            items = []
+            for name in sorted(node.children):
+                child = node.children[name]
+                items.append(name + '(' + serialize(child) + ')')
+            node.serial = ''.join(items)
+            serial_map[node.serial].append(node)
+            return node.serial
+        
+        serialize(root)
+
+        for nodes in serial_map.values():
+            if len(nodes) > 1:
+                for node in nodes:
+                    node.to_delete = True
+        
+        res = []
+        def collect(node, path):
+            for name, child in node.children.items():
+                if not child.to_delete:
+                    new_path = path + [name]
+                    res.append(new_path)
+                    collect(child, new_path)
+        
+        collect(root, [])
+        return res
+

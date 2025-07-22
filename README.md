@@ -50,7 +50,8 @@ I update this repo daily with my solution for each day.
 | 21  |     leetcode      |   py       | leetcode.txt | 18/07|
 | 22  |     leetcode      |   py       | leetcode.txt | 19/07|
 | 23  |     leetcode      |   py       | leetcode.txt | 20/07|
-| 23  |     leetcode      |   py       | leetcode.txt | 20/07|
+| 24  |     leetcode      |   py       | leetcode.txt | 21/07|
+| 25  |     leetcode      |   py       | leetcode.txt | 22/07|
 ## 🏁 Goal
 
 To complete 100 days of continuous learning, strengthen algorithmic thinking, and build a powerful problem-solving habit.

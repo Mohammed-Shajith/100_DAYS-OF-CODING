@@ -910,4 +910,156 @@ class Solution(object):
 
         return gain1 + gain2
 
+24/07
+# 2322. Minimum Score After Removals on a Tree
+class Solution(object):
+    def minimumScore(self, nums, edges):
+        """
+        :type nums: List[int]
+        :type edges: List[List[int]]
+        :rtype: int
+        """
+        from collections import defaultdict
+
+        n = len(nums)
+        graph = defaultdict(list)
+        for u, v in edges:
+            graph[u].append(v)
+            graph[v].append(u)
+        parent = [-1] * n
+        xor = nums[:]
+        def dfs(node, par):
+            for nei in graph[node]:
+                if nei != par:
+                    parent[nei] = node
+                    dfs(nei, node)
+                    xor[node] ^= xor[nei]
+        dfs(0, -1)
+
+        in_time = [0] * n
+        out_time = [0] * n
+        time = [0]
+        def dfs_time(node, par):
+            time[0] += 1
+            in_time[node] = time[0]
+            for nei in graph[node]:
+                if nei != par:
+                    dfs_time(nei, node)
+            time[0] += 1
+            out_time[node] = time[0]
+        dfs_time(0, -1)
+
+        def is_ancestor(u, v):
+            return in_time[u] < in_time[v] and out_time[v] < out_time[u]
+
+        answer = float('inf')
+        edge_nodes = [v if parent[v] == u else u for u, v in edges]
+        for i in range(len(edge_nodes)):
+            for j in range(i + 1, len(edge_nodes)):
+                a, b = edge_nodes[i], edge_nodes[j]
+                if is_ancestor(a, b):
+                    comp1 = xor[b]
+                    comp2 = xor[a] ^ xor[b]
+                    comp3 = xor[0] ^ xor[a]
+                elif is_ancestor(b, a):
+                    comp1 = xor[a]
+                    comp2 = xor[b] ^ xor[a]
+                    comp3 = xor[0] ^ xor[b]
+                else:
+                    comp1 = xor[a]
+                    comp2 = xor[b]
+                    comp3 = xor[0] ^ xor[a] ^ xor[b]
+                values = [comp1, comp2, comp3]
+                answer = min(answer, max(values) - min(values))
+        return answer
+# 452. Minimum Number of Arrows to Burst Balloons 
+
+class Solution(object):
+    def findMinArrowShots(self, points):
+        if not points:
+            return 0
+
+        points.sort(key=lambda x: x[1])
+
+        arrows = 1
+        end = points[0][1]
+
+        for i in range(1, len(points)):
+            if points[i][0] > end:
+                arrows += 1
+                end = points[i][1]
+
+        return arrows
+
+# 455. Assign Cookies
+
+class Solution(object):
+    def findContentChildren(self, g, s):
+        """
+        :type g: List[int]
+        :type s: List[int]
+        :rtype: int
+        """
+        g.sort()
+        s.sort()
+
+        child = 0  
+        cookie = 0 
+
+        while child < len(g) and cookie < len(s):
+            if s[cookie] >= g[child]:  
+                child += 1  
+            cookie += 1  
+
+        return child  
+
+# 502. IPO
+
+import heapq
+
+class Solution(object):
+    def findMaximizedCapital(self, k, w, profits, capital):
+        # Pair up capital and profits
+        projects = sorted(zip(capital, profits))
+        n = len(projects)
+        max_heap = []
+        i = 0
+
+        for _ in range(k):
+            while i < n and projects[i][0] <= w:
+                heapq.heappush(max_heap, -projects[i][1])
+                i += 1
+
+            if not max_heap:
+                break
+
+            w += -heapq.heappop(max_heap)
+
+        return w
+
+# 517. Super Washing Machines
+
+class Solution(object):
+    def findMinMoves(self, machines):
+        """
+        :type machines: List[int]
+        :rtype: int
+        """
+        total = sum(machines)
+        n = len(machines)
+
+        if total % n != 0:
+            return -1
+        
+        target = total // n
+        cum_sum = 0
+        max_moves = 0
+
+        for load in machines:
+            diff = load - target  
+            cum_sum += diff      
+            max_moves = max(max_moves, abs(cum_sum), diff)
+
+        return max_moves
+
 

@@ -1105,3 +1105,59 @@ class Solution(object):
             if curr[0] > max_pair[0] or (curr[0] == max_pair[0] and curr[1] > max_pair[1]):
                 max_pair = curr
         return max_pair
+
+27/07
+# 2210. Count Hills and Valleys in an Array
+
+class Solution(object):
+    def countHillValley(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        filtered = [nums[0]]
+        for i in range(1, len(nums)):
+            if nums[i] != nums[i - 1]:
+                filtered.append(nums[i])
+        
+        count = 0
+        for i in range(1, len(filtered) - 1):
+            if filtered[i] > filtered[i - 1] and filtered[i] > filtered[i + 1]:
+                count += 1  
+            elif filtered[i] < filtered[i - 1] and filtered[i] < filtered[i + 1]:
+                count += 1  
+        
+        return count
+
+# 561. Array Partition
+
+class Solution(object):
+    def arrayPairSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        nums.sort()
+        max_sum = 0
+        for i in range(0, len(nums), 2):
+            max_sum += nums[i]
+        return max_sum
+
+# 581. Shortest Unsorted Continuous Subarray
+
+class Solution(object):
+    def findUnsortedSubarray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        sorted_nums = sorted(nums)
+        start, end = 0, len(nums) - 1
+
+        while start < len(nums) and nums[start] == sorted_nums[start]:
+            start += 1
+        
+        while end > start and nums[end] == sorted_nums[end]:
+            end -= 1
+
+        return end - start + 1 if end > start else 0

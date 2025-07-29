@@ -1189,4 +1189,30 @@ class Solution(object):
 
         dfs(0, 0)
         return self.count
+29/07
+# 2411. Smallest Subarrays With Maximum Bitwise OR
+
+class Solution(object):
+    def smallestSubarrays(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        n = len(nums)
+        answer = [1] * n
+        last = [0] * 32
+
+        for i in range(n - 1, -1, -1):
+            for b in range(32):
+                if nums[i] & (1 << b):
+                    last[b] = i
+
+            farthest = i
+            for b in range(32):
+                if last[b] > farthest:
+                    farthest = last[b]
+
+            answer[i] = farthest - i + 1
+
+        return answer
 

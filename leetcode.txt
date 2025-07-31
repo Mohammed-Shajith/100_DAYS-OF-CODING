@@ -1237,5 +1237,22 @@ class Solution(object):
                 current = 0
         
         return longest
+31/07
+# 898. Bitwise ORs of Subarrays
+
+class Solution(object):
+    def subarrayBitwiseORs(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: int
+        """
+        result = set()    
+        current = set()    
+        for num in arr:
+            current = {num | x for x in current} | {num}
+            result |= current  
+
+        return len(result)
+
 
 

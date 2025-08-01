@@ -61,6 +61,7 @@ I update this repo daily with my solution for each day.
 | 32  |     leetcode      |   py       | leetcode.txt | 29/07|
 | 33  |     leetcode      |   py       | leetcode.txt | 30/07|
 | 34  |     leetcode      |   py       | leetcode.txt | 31/07|
+| 35  |     leetcode      |   py       | leetcode.txt | 01/08|
 
 ## 🏁 Goal
 

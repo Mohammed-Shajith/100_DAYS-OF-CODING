@@ -1273,6 +1273,143 @@ class Solution(object):
             triangle.append(row)
         
         return triangle
+02/08
+# 2561. Rearranging Fruits
+
+from collections import Counter
+
+class Solution(object):
+    def minCost(self, basket1, basket2):
+        """
+        :type basket1: List[int]
+        :type basket2: List[int]
+        :rtype: int
+        """
+        count1 = Counter(basket1)
+        count2 = Counter(basket2)
+        
+        total_count = Counter()
+        for k in count1:
+            total_count[k] += count1[k]
+        for k in count2:
+            total_count[k] += count2[k]
+
+        for k in total_count:
+            if total_count[k] % 2 != 0:
+                return -1
+
+        extra1 = []
+        extra2 = []
+        for fruit in total_count:
+            c1 = count1.get(fruit, 0)
+            c2 = count2.get(fruit, 0)
+            diff = abs(c1 - c2) // 2
+            if c1 > c2:
+                extra1.extend([fruit] * diff)
+            elif c2 > c1:
+                extra2.extend([fruit] * diff)
+
+        if len(extra1) != len(extra2):
+            return -1
+
+        extra1.sort()
+        extra2.sort(reverse=True)
+
+        min_fruit = min(min(basket1), min(basket2))
+        cost = 0
+        for a, b in zip(extra1, extra2):
+            cost += min(min(a, b), 2 * min_fruit)
+
+        return cost
+# 624. Maximum Distance in Arrays
+
+class Solution(object):
+    def maxDistance(self, arrays):
+        """
+        :type arrays: List[List[int]]
+        :rtype: int
+        """
+        min_val = arrays[0][0]
+        max_val = arrays[0][-1]
+        max_distance = 0
+
+        for i in range(1, len(arrays)):
+            curr_min = arrays[i][0]
+            curr_max = arrays[i][-1]
+            
+            max_distance = max(
+                max_distance,
+                abs(curr_max - min_val),
+                abs(max_val - curr_min)
+            )
+
+            min_val = min(min_val, curr_min)
+            max_val = max(max_val, curr_max)
+
+        return max_distance
+# 630. Course Schedule III 
+
+import heapq
+
+class Solution(object):
+    def scheduleCourse(self, courses):
+        """
+        :type courses: List[List[int]]
+        :rtype: int
+        """
+        courses.sort(key=lambda x: x[1])
+        
+        total_time = 0
+        max_heap = []
+
+        for duration, last_day in courses:
+            total_time += duration
+            heapq.heappush(max_heap, -duration) 
+
+            if total_time > last_day:
+                longest = -heapq.heappop(max_heap)
+                total_time -= longest
+
+        return len(max_heap)
+# 632. Smallest Range Covering Elements from K Lists
+
+import heapq
+
+class Solution(object):
+    def smallestRange(self, nums):
+        """
+        :type nums: List[List[int]]
+        :rtype: List[int]
+        """
+        heap = []
+        current_max = float('-inf')
+
+        for i in range(len(nums)):
+            val = nums[i][0]
+            heapq.heappush(heap, (val, i, 0))
+            current_max = max(current_max, val)
+
+        best_range = [float('-inf'), float('inf')]
+
+        while True:
+            min_val, row, col = heapq.heappop(heap)
+
+            if current_max - min_val < best_range[1] - best_range[0] or \
+               (current_max - min_val == best_range[1] - best_range[0] and min_val < best_range[0]):
+                best_range = [min_val, current_max]
+
+            if col + 1 < len(nums[row]):
+                next_val = nums[row][col + 1]
+                heapq.heappush(heap, (next_val, row, col + 1))
+                current_max = max(current_max, next_val)
+            else:
+                break
+
+        return best_range
+
+
+
+
 
 
 

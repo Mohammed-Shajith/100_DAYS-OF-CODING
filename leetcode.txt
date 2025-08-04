@@ -1442,6 +1442,34 @@ public:
         
     }
 };
+04/08
+# 904. Fruit Into Baskets
+
+class Solution(object):
+    def totalFruit(self, fruits):
+        """
+        :type fruits: List[int]
+        :rtype: int
+        """
+        from collections import defaultdict
+        
+        basket = defaultdict(int)
+        start = 0
+        max_fruits = 0
+
+        for end in range(len(fruits)):
+            basket[fruits[end]] += 1
+
+            while len(basket) > 2:
+                basket[fruits[start]] -= 1
+                if basket[fruits[start]] == 0:
+                    del basket[fruits[start]]
+                start += 1
+
+            max_fruits = max(max_fruits, end - start + 1)
+
+        return max_fruits
+
 
 
 

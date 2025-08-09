@@ -1617,6 +1617,39 @@ class Solution:
         dp = [[-1 for _ in range(n + 1)] for _ in range(n + 1)]
         return self.f(n, n, dp)
 
+09/08
+#  231. Power of Two
+
+class Solution(object):
+    def isPowerOfTwo(self, n):
+        e: bool
+        """
+        return n > 0 and (n & (n - 1)) == 0
+
+# 646. Maximum Length of Pair Chain
+
+class Solution(object):
+    def findLongestChain(self, pairs):
+        """
+        :type pairs: List[List[int]]
+        :rtype: int
+        """
+        pairs.sort(key=lambda x: x[1])
+        
+        curr_end = float('-inf')
+        count = 0
+        
+        for left, right in pairs:
+            if left > curr_end:  
+                count += 1
+                curr_end = right
+        
+        return count
+
+
+
+
+
 
 
 

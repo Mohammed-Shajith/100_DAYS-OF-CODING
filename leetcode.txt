@@ -1646,7 +1646,7 @@ class Solution(object):
         
         return count
 
-11/08
+10/08
 # 869. Reordered Power of 2
 
 class Solution(object):
@@ -1661,6 +1661,7 @@ class Solution(object):
         power_signatures = set(digit_signature(1 << i) for i in range(31))
         
         return digit_signature(n) in power_signatures
+
 
 
 

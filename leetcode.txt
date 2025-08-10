@@ -1646,6 +1646,26 @@ class Solution(object):
         
         return count
 
+11/08
+# 869. Reordered Power of 2
+
+class Solution(object):
+    def reorderedPowerOf2(self, n):
+        """
+        :type n: int
+        :rtype: bool
+        """
+        def digit_signature(x):
+            return ''.join(sorted(str(x)))
+        
+        power_signatures = set(digit_signature(1 << i) for i in range(31))
+        
+        return digit_signature(n) in power_signatures
+
+
+
+
+
 
 
 

@@ -1662,6 +1662,42 @@ class Solution(object):
         
         return digit_signature(n) in power_signatures
 
+11/08
+# 2438. Range Product Queries of Powers
+
+class Solution(object):
+    def productQueries(self, n, queries):
+        """
+        :type n: int
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        MOD = 10**9 + 7
+
+        powers = []
+        bit = 0
+        while n > 0:
+            if n & 1:
+                powers.append(1 << bit) 
+            bit += 1
+            n >>= 1
+        prefix_prod = [1] * len(powers)
+        prefix_prod[0] = powers[0] % MOD
+        for i in range(1, len(powers)):
+            prefix_prod[i] = (prefix_prod[i-1] * powers[i]) % MOD
+
+        ans = []
+        for l, r in queries:
+            if l == 0:
+                ans.append(prefix_prod[r] % MOD)
+            else:
+                ans.append((prefix_prod[r] * pow(prefix_prod[l-1], MOD-2, MOD)) % MOD)
+
+        return ans
+
+
+
+
 
 
 

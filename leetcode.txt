@@ -1695,6 +1695,49 @@ class Solution(object):
 
         return ans
 
+12/08
+#  2787. Ways to Express an Integer as Sum of Powers
+
+class Solution(object):
+    def numberOfWays(self, n, x):
+        """
+        :type n: int
+        :type x: int
+        :rtype: int
+        """
+        MOD = 10**9 + 7
+        
+        powers = []
+        base = 1
+        while True:
+            val = base ** x
+            if val > n:
+                break
+            powers.append(val)
+            base += 1
+        
+        memo = {}
+        
+        def dfs(remaining, index):
+            if remaining == 0:
+                return 1
+            if remaining < 0 or index == len(powers):
+                return 0
+            
+            if (remaining, index) in memo:
+                return memo[(remaining, index)]
+            include = dfs(remaining - powers[index], index + 1)
+            exclude = dfs(remaining, index + 1)
+            
+            memo[(remaining, index)] = (include + exclude) % MOD
+            return memo[(remaining, index)]
+        
+        return dfs(n, 0)
+
+
+
+
+
 
 
 

@@ -1733,7 +1733,7 @@ class Solution(object):
             return memo[(remaining, index)]
         
         return dfs(n, 0)
-12/08
+13/08
 # 326. Power of Three
 
 class Solution(object):
@@ -1745,3 +1745,4 @@ class Solution(object):
             n //= 3
         
         return n == 1
+

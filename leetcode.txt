@@ -1891,3 +1891,46 @@ class Solution(object):
                 return False
 
         return True
+
+18/08
+#  679. 24 Game
+
+class Solution(object):
+    def judgePoint24(self, cards):
+        """
+        :type cards: List[int]
+        :rtype: bool
+        """
+        EPSILON = 1e-6  
+        TARGET = 24.0
+
+        def dfs(nums):
+            if len(nums) == 1:
+                return abs(nums[0] - TARGET) < EPSILON
+
+            for i in range(len(nums)):
+                for j in range(len(nums)):
+                    if i == j:
+                        continue
+                    
+                    next_nums = []
+                    for k in range(len(nums)):
+                        if k != i and k != j:
+                            next_nums.append(nums[k])
+                    
+                    for op in operations(nums[i], nums[j]):
+                        next_nums.append(op)
+                        if dfs(next_nums):
+                            return True
+                        next_nums.pop()
+            return False
+
+        def operations(a, b):
+            res = [a + b, a - b, b - a, a * b]
+            if abs(b) > 1e-6:
+                res.append(a / b)
+            if abs(a) > 1e-6:
+                res.append(b / a)
+            return res
+
+        return dfs([float(c) for c in cards])

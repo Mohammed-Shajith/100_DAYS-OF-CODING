@@ -2010,3 +2010,126 @@ class Solution(object):
                         total += min_h
         
         return total
+
+22/08
+# 3195. Find the Minimum Area to Cover All Ones I
+
+class Solution(object):
+    def minimumArea(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        m, n = len(grid), len(grid[0])
+        
+        min_row, max_row = m, -1
+        min_col, max_col = n, -1
+        
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == 1:
+                    min_row = min(min_row, i)
+                    max_row = max(max_row, i)
+                    min_col = min(min_col, j)
+                    max_col = max(max_col, j)
+        
+        height = max_row - min_row + 1
+        width = max_col - min_col + 1
+        
+        return height * width
+
+# 670. Maximum Swap
+
+class Solution(object):
+    def maximumSwap(self, num):
+        """
+        :type num: int
+        :rtype: int
+        """
+        digits = list(str(num))
+        
+        last = {int(d): i for i, d in enumerate(digits)}
+        
+        for i, d in enumerate(digits):
+            for bigger in range(9, int(d), -1):
+                if last.get(bigger, -1) > i:
+                    digits[i], digits[last[bigger]] = digits[last[bigger]], digits[i]
+                    return int("".join(digits))
+    
+        return num
+
+# 678. Valid Parenthesis String
+
+class Solution(object):
+    def checkValidString(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        low = high = 0 
+        for ch in s:
+            if ch == '(':
+                low += 1
+                high += 1
+            elif ch == ')':
+                low -= 1
+                high -= 1
+            else:  
+                low -= 1 
+                high += 1  
+
+            if high < 0:  
+                return False
+            if low < 0:   
+                low = 0
+
+        return low == 0
+
+#  680. Valid Palindrome II
+
+class Solution(object):
+    def validPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        def is_palindrome(left, right):
+            while left < right:
+                if s[left] != s[right]:
+                    return False
+                left += 1
+                right -= 1
+            return True
+        
+        left, right = 0, len(s) - 1
+        
+        while left < right:
+            if s[left] != s[right]:
+                return is_palindrome(left + 1, right) or is_palindrome(left, right - 1)
+            left += 1
+            right -= 1
+        
+        return True
+
+#  714. Best Time to Buy and Sell Stock with Transaction Fee
+
+class Solution(object):
+    def maxProfit(self, prices, fee):
+        """
+        :type prices: List[int]
+        :type fee: int
+        :rtype: int
+        """
+        n = len(prices)
+        if n == 0:
+            return 0
+        
+        hold = -prices[0]   
+        cash = 0           
+        
+        for price in prices[1:]:
+            hold = max(hold, cash - price)
+            cash = max(cash, hold + price - fee)
+        
+        return cash
+

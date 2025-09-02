@@ -2659,3 +2659,21 @@ class Solution(object):
             total_ratio += p * 1.0 / t
 
         return total_ratio / len(classes)
+
+02/09
+#  3025. Find the Number of Ways to Place People I
+
+class Solution:
+    def numberOfPairs(self, points: List[List[int]]) -> int:
+        points = sorted(points, key= lambda x: [x[0],-x[1]])
+        n = len(points)
+        cnt = 0
+        for i in range(n):
+            j = i - 1
+            min_y = float('inf')
+            while j >= 0:
+                if points[j][1] < min_y and points[j][1] >= points[i][1] and points[j][0] <= points[i][0]:
+                    min_y = min(min_y, points[j][1])
+                    cnt += 1
+                j -= 1
+        return cnt

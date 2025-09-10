@@ -2876,4 +2876,31 @@ class Solution(object):
         
         return result
 
+10/09
+#  1733. Minimum Number of People to Teach 
 
+class Solution(object):
+    def minimumTeachings(self, n, languages, friendships):
+        """
+        :type n: int
+        :type languages: List[List[int]]
+        :type friendships: List[List[int]]
+        :rtype: int
+        """
+        langs = [set(l) for l in languages]
+        
+        need_teaching = set()
+        for u, v in friendships:
+            u -= 1  
+            v -= 1
+            if langs[u].isdisjoint(langs[v]):
+                need_teaching.add(u)
+                need_teaching.add(v)
+        
+        min_teach = len(need_teaching)
+        
+        for lang in range(1, n + 1):
+            already_know = sum(1 for user in need_teaching if lang in langs[user])
+            min_teach = min(min_teach, len(need_teaching) - already_know)
+        
+        return min_teach

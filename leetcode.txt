@@ -2929,3 +2929,15 @@ class Solution(object):
                 res.append(ch)
         
         return "".join(res)
+
+12/09
+#  3227. Vowels Game in a String
+
+class Solution(object):
+    def doesAliceWin(self, s):
+        
+        vowels = set("aeiou")
+        for ch in s:
+            if ch in vowels:
+                return True  
+        return False  

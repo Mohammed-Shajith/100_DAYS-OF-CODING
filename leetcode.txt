@@ -3174,3 +3174,87 @@ class Spreadsheet(object):
             else:  
                 result += self.cells.get(token, 0)
         return result
+
+20/09
+#   3508. Implement Router
+
+from collections import deque
+from bisect import bisect_left, bisect_right
+
+class Router(object):
+
+    def __init__(self, memoryLimit):
+        """
+        :type memoryLimit: int
+        """
+        self.memoryLimit = memoryLimit
+        self.queue = deque()  # FIFO queue for packets
+        self.packet_set = set()  # detect duplicates
+        self.dest_map = {}  
+
+    def addPacket(self, source, destination, timestamp):
+        """
+        :type source: int
+        :type destination: int
+        :type timestamp: int
+        :rtype: bool
+        """
+        packet = (source, destination, timestamp)
+
+        # Duplicate check
+        if packet in self.packet_set:
+            return False
+
+        if len(self.queue) >= self.memoryLimit:
+            old_src, old_dst, old_time = self.queue.popleft()
+            self.packet_set.remove((old_src, old_dst, old_time))
+            # remove old_time from sorted list
+            idx = bisect_left(self.dest_map[old_dst], old_time)
+            if 0 <= idx < len(self.dest_map[old_dst]) and self.dest_map[old_dst][idx] == old_time:
+                self.dest_map[old_dst].pop(idx)
+            if not self.dest_map[old_dst]:
+                del self.dest_map[old_dst]
+
+        # Add new packet
+        self.queue.append(packet)
+        self.packet_set.add(packet)
+        if destination not in self.dest_map:
+            self.dest_map[destination] = []
+        self.dest_map[destination].append(timestamp)  # timestamps always increasing
+
+        return True
+
+    def forwardPacket(self):
+        """
+        :rtype: List[int]
+        """
+        if not self.queue:
+            return []
+
+        src, dst, ts = self.queue.popleft()
+        self.packet_set.remove((src, dst, ts))
+
+        # remove from sorted list
+        idx = bisect_left(self.dest_map[dst], ts)
+        if 0 <= idx < len(self.dest_map[dst]) and self.dest_map[dst][idx] == ts:
+            self.dest_map[dst].pop(idx)
+        if not self.dest_map[dst]:
+            del self.dest_map[dst]
+
+        return [src, dst, ts]
+
+    def getCount(self, destination, startTime, endTime):
+        """
+        :type destination: int
+        :type startTime: int
+        :type endTime: int
+        :rtype: int
+        """
+        if destination not in self.dest_map:
+            return 0
+
+        timestamps = self.dest_map[destination]
+        # count timestamps in [startTime, endTime]
+        left = bisect_left(timestamps, startTime)
+        right = bisect_right(timestamps, endTime)
+        return right - left

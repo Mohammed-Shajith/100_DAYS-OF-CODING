@@ -3324,3 +3324,19 @@ public:
         return res;
     }
 };
+
+22/09
+#   3005. Count Elements With Maximum Frequency
+
+from collections import Counter
+
+class Solution(object):
+    def maxFrequencyElements(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        freq = Counter(nums)   
+        max_freq = max(freq.values())  
+        total = sum(v for v in freq.values() if v == max_freq)  
+        return total

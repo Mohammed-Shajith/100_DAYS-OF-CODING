@@ -3365,3 +3365,43 @@ class Solution(object):
             elif v1[i] > v2[i]:
                 return 1
         return 0
+
+24/09
+#   166. Fraction to Recurring Decimal
+
+class Solution(object):
+    def fractionToDecimal(self, numerator, denominator):
+        """
+        :type numerator: int
+        :type denominator: int
+        :rtype: str
+        """
+        if numerator == 0:
+            return "0"
+
+        result = ""
+        if (numerator < 0) ^ (denominator < 0):
+            result += "-"
+
+        numerator = abs(numerator)
+        denominator = abs(denominator)
+
+        result += str(numerator // denominator)
+        remainder = numerator % denominator
+
+        if remainder == 0:
+            return result
+
+        result += "."
+        remainders = {}
+        while remainder != 0:
+            if remainder in remainders:
+                result = result[:remainders[remainder]] + "(" + result[remainders[remainder]:] + ")"
+                return result
+
+            remainders[remainder] = len(result)
+            remainder *= 10
+            result += str(remainder // denominator)
+            remainder %= denominator
+
+        return result

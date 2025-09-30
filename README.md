@@ -122,6 +122,7 @@ I update this repo daily with my solution for each day.
 | 90  |     leetcode      |   py       | leetcode.txt | 27/09|
 | 91  |     leetcode      |   py       | leetcode.txt | 28/09|
 | 92  |     leetcode      |   py       | leetcode.txt | 29/09|
+| 93  |     leetcode      |   py       | leetcode.txt | 30/09|
 
 ## 🏁 Goal
 
@@ -130,6 +131,7 @@ To complete 100 days of continuous learning, strengthen algorithmic thinking, an
 ---
 
 > Feel free to ⭐ the repo and follow my journey! Let's grow together 💪
+
 
 
 

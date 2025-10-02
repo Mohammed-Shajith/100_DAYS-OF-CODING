@@ -3544,3 +3544,48 @@ class Solution(object):
             empty = empty % numExchange + new_bottles
 
         return total_drunk
+
+02/10
+#   3100. Water Bottles II
+
+class Solution(object):
+    def maxBottlesDrunk(self, numBottles, numExchange):
+        total_drunk = numBottles
+        empty = numBottles
+
+        while empty >= numExchange:
+            empty -= numExchange
+            total_drunk += 1
+            empty += 1 
+            numExchange += 1
+
+        return total_drunk
+
+#   846. Hand of Straights
+
+import collections
+import heapq
+
+class Solution(object):
+    def isNStraightHand(self, hand, groupSize):
+        
+        n = len(hand)
+        if n % groupSize != 0:
+            return False  # must divide evenly
+
+        count = collections.Counter(hand)
+        min_heap = list(count.keys())
+        heapq.heapify(min_heap)
+
+        while min_heap:
+            first = min_heap[0]  # smallest card
+            for i in range(groupSize):
+                if count[first + i] == 0:
+                    return False
+                count[first + i] -= 1
+                if count[first + i] == 0:
+                    if first + i != min_heap[0]:
+                        return False
+                    heapq.heappop(min_heap)
+
+        return True

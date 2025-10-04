@@ -3628,3 +3628,5 @@ class Solution(object):
                     heapq.heappush(heap, (max(h, heightMap[nx][ny]), nx, ny))
 
         return trapped
+
+04/10

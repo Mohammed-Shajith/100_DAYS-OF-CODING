@@ -3691,3 +3691,39 @@ class Solution(object):
                 nr, nc = r + dr, c + dc
                 if 0 <= nr < n and 0 <= nc < n and not visited[nr][nc]:\
                     heapq.heappush(heap, (max(t, grid[nr][nc]), nr, nc))
+
+07/10
+#  1488. Avoid Flood in The City
+
+import bisect
+
+class Solution(object):
+    def avoidFlood(self, rains):
+        """
+        :type rains: List[int]
+        :rtype: List[int]
+        """
+        n = len(rains)
+        ans = [-1] * n
+        full_lakes = {}          # lake -> last day it was filled
+        dry_days = []            # indices of days when we can dry
+
+        for i, lake in enumerate(rains):
+            if lake == 0:
+                # this is a dry day, we can dry any lake later
+                dry_days.append(i)
+                ans[i] = 1  # default value, will update later
+            else:
+                # it rains on lake
+                if lake in full_lakes:
+                    # find the next dry day available after the last rain of this lake
+                    j = bisect.bisect_right(dry_days, full_lakes[lake])
+                    if j == len(dry_days):
+                        return []  # no dry day available -> flood occurs
+                    dry_day = dry_days[j]
+                    ans[dry_day] = lake  # dry this lake on that day
+                    dry_days.pop(j)      # remove used dry day
+                # update this lake as full today
+                full_lakes[lake] = i
+
+        return ans

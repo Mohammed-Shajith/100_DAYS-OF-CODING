@@ -3728,7 +3728,7 @@ class Solution(object):
 
         return ans
 
-08/09
+08/10
 #   2300. Successful Pairs of Spells and Potions
 
 import bisect
@@ -3752,7 +3752,7 @@ class Solution(object):
 
         return res
 
-09/09
+09/10
 #  3494. Find the Minimum Amount of Time to Brew Potions
 
 class Solution {
@@ -3773,3 +3773,22 @@ public:
         return time[n - 1];
     }
 };
+
+10/10
+#   3147. Taking Maximum Energy From the Mystic Dungeon
+
+class Solution(object):
+    def maximumEnergy(self, energy, k):
+        """
+        :type energy: List[int]
+        :type k: int
+        :rtype: int
+        """
+        n = len(energy)
+        dp = [0] * n
+
+        for i in range(n - 1, -1, -1):
+            dp[i] = energy[i]
+            if i + k < n:
+                dp[i] += dp[i + k]
+        return max(dp)

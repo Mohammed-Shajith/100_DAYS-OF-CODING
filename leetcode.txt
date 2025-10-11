@@ -3792,3 +3792,40 @@ class Solution(object):
             if i + k < n:
                 dp[i] += dp[i + k]
         return max(dp)
+
+11/10
+#   3186. Maximum Total Damage With Spell Casting
+
+class Solution(object):
+    def maximumTotalDamage(self, power):
+        """
+        :type power: List[int]
+        :rtype: int
+        """
+        from collections import Counter
+        
+        # Step 1: Count frequency of each damage value
+        count = Counter(power)
+        
+        # Step 2: Work with sorted unique damage values
+        unique = sorted(count.keys())
+        n = len(unique)
+        
+        # dp[i] = maximum total damage considering up to unique[i]
+        dp = [0] * n
+        
+        for i in range(n):
+            total_damage = unique[i] * count[unique[i]]  # total from this damage value
+            
+            # Option 1: Take this damage and skip incompatible ones (within ±2)
+            j = i - 1
+            while j >= 0 and unique[i] - unique[j] <= 2:
+                j -= 1
+            
+            if j >= 0:
+                total_damage += dp[j]
+            
+            # Option 2: Skip this damage value
+            dp[i] = max(dp[i - 1] if i > 0 else 0, total_damage)
+        
+        return dp[-1]

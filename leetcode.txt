@@ -3880,3 +3880,22 @@ class Solution(object):
                 res.append(words[i])
         
         return res
+
+14/10
+#   3349. Adjacent Increasing Subarrays Detection I
+
+class Solution(object):
+    def hasIncreasingSubarrays(self, nums, k):
+        
+        n = len(nums)
+        def is_increasing(i):
+            for j in range(i, i + k - 1):
+                if nums[j] >= nums[j + 1]:
+                    return False
+            return True
+        
+        for i in range(0, n - 2 * k + 1):
+            if is_increasing(i) and is_increasing(i + k):
+                return True
+        
+        return False

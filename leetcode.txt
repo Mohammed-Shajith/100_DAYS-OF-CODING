@@ -3926,3 +3926,21 @@ public:
         return ans;
     }
 };
+
+16/10
+#    2598. Smallest Missing Non-negative Integer After Operations
+
+class Solution(object):
+    def findSmallestInteger(self, nums, value):
+       
+        count = Counter(((num % value) + value) % value for num in nums)
+
+        mex = 0
+        while True:
+            remainder = mex % value
+            if count[remainder] > 0:
+                count[remainder] -= 1
+                mex += 1
+            else:
+                break
+        return mex

@@ -4003,3 +4003,25 @@ public:
         return solve(0, 0, 0, k, s);
     }
 };
+
+18/10
+#   3397. Maximum Number of Distinct Elements After Operations
+
+class Solution(object):
+    def maxDistinctElements(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        nums.sort()
+        next_available = -10**30 
+        count = 0
+
+        for num in nums:
+            start = max(next_available, num - k)
+            if start <= num + k:
+                count += 1
+                next_available = start + 1
+
+        return count

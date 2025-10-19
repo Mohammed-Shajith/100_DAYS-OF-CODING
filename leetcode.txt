@@ -4025,3 +4025,42 @@ class Solution(object):
                 next_available = start + 1
 
         return count
+
+19/10
+#   1625. Lexicographically Smallest String After Applying Operations
+
+class Solution(object):
+    def findLexSmallestString(self, s, a, b):
+     
+        from collections import deque
+
+        def add_op(t):
+            chars = list(t)
+            for i in range(1, len(chars), 2):
+                chars[i] = str((int(chars[i]) + a) % 10)
+            return "".join(chars)
+
+        def rotate_op(t):
+            n = len(t)
+            return t[-b:] + t[:-b]
+
+        seen = set([s])
+        q = deque([s])
+        smallest = s
+
+        while q:
+            cur = q.popleft()
+            if cur < smallest:
+                smallest = cur
+
+            added = add_op(cur)
+            if added not in seen:
+                seen.add(added)
+                q.append(added)
+
+            rotated = rotate_op(cur)
+            if rotated not in seen:
+                seen.add(rotated)
+                q.append(rotated)
+
+        return smallest

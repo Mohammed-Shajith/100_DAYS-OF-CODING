@@ -4064,3 +4064,19 @@ class Solution(object):
                 q.append(rotated)
 
         return smallest
+
+20/10
+#   2011. Final Value of Variable After Performing Operations
+
+class Solution(object):
+    def finalValueAfterOperations(self, operations):
+     
+        X = 0  
+
+        for op in operations:
+            if '+' in op:
+                X += 1
+            else:
+                X -= 1
+
+        return X

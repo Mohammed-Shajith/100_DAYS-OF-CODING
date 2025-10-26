@@ -4215,3 +4215,31 @@ private:
         return true;
     }
 };
+
+26/10
+#   2043. Simple Bank System
+
+class Bank(object):
+
+    def __init__(self, balance):
+        self.balance = balance
+        self.n = len(balance)
+
+    def transfer(self, account1, account2, money):
+        if 1 <= account1 <= self.n and 1 <= account2 <= self.n and self.balance[account1 - 1] >= money:
+            self.balance[account1 - 1] -= money
+            self.balance[account2 - 1] += money
+            return True
+        return False
+
+    def deposit(self, account, money):
+        if 1 <= account <= self.n:
+            self.balance[account - 1] += money
+            return True
+        return False
+
+    def withdraw(self, account, money):
+        if 1 <= account <= self.n and self.balance[account - 1] >= money:
+            self.balance[account - 1] -= money
+            return True
+        return False

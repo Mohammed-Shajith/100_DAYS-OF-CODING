@@ -4243,3 +4243,17 @@ class Bank(object):
             self.balance[account - 1] -= money
             return True
         return False
+
+27/10
+#   2125. Number of Laser Beams in a Bank
+
+class Solution(object):
+    def numberOfBeams(self, bank):
+        prev = 0
+        res = 0
+        for row in bank:
+            curr = row.count('1')
+            if curr:
+                res += prev * curr
+                prev = curr
+        return res

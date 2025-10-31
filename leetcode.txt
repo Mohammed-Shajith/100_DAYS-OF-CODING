@@ -4306,3 +4306,19 @@ class Solution(object):
             if target[i] > target[i - 1]:
                 res += target[i] - target[i - 1]
         return res
+
+31/10
+#   3289. The Two Sneaky Numbers of Digitville
+
+
+class Solution(object):
+    def getSneakyNumbers(self, nums):
+
+        seen = set()
+        res = []
+        for num in nums:
+            if num in seen:
+                res.append(num)
+            else:
+                seen.add(num)
+        return res

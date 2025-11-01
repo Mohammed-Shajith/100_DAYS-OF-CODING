@@ -4322,3 +4322,24 @@ class Solution(object):
             else:
                 seen.add(num)
         return res
+
+01/11
+#   3217. Delete Nodes From Linked List Present in Array
+
+
+class Solution(object):
+    def modifiedList(self, nums, head):
+    
+        to_remove = set(nums)
+        dummy = ListNode(0)
+        dummy.next = head
+        prev, curr = dummy, head
+        
+        while curr:
+            if curr.val in to_remove:
+                prev.next = curr.next
+            else:
+                prev = curr
+            curr = curr.next
+        
+        return dummy.next

@@ -4381,3 +4381,22 @@ class Solution(object):
                     count += 1
 
         return count
+
+03/11
+#   1578. Minimum Time to Make Rope Colorful
+
+class Solution(object):
+    def minCost(self, colors, neededTime):
+    
+        total_time = 0
+        prev = 0
+        
+        for i in range(1, len(colors)):
+            if colors[i] == colors[prev]:
+                total_time += min(neededTime[i], neededTime[prev])
+                if neededTime[i] > neededTime[prev]:
+                    prev = i
+            else:
+                prev = i
+                
+        return total_time

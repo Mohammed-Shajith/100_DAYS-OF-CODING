@@ -4400,3 +4400,30 @@ class Solution(object):
                 prev = i
                 
         return total_time
+
+04/11
+#  3318. Find X-Sum of All K-Long Subarrays I
+
+class Solution(object):
+    def findXSum(self, nums, k, x):
+        """
+        :type nums: List[int]
+        :type k: int
+        :type x: int
+        :rtype: List[int]
+        """
+        from collections import Counter
+        n = len(nums)
+        result = []
+
+        for i in range(n - k + 1):
+            sub = nums[i:i + k]
+            freq = Counter(sub)
+            sorted_items = sorted(freq.items(), key=lambda a: (a[1], a[0]), reverse=True)
+            
+            top_x = set([val for val, _ in sorted_items[:x]])
+            
+            total = sum(num for num in sub if num in top_x)
+            result.append(total)
+        
+        return result

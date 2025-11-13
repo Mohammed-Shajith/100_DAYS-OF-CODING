@@ -4667,3 +4667,25 @@ public:
         return res == INT_MAX ? -1 : res;
     }
 };
+
+
+13/11
+#   3228. Maximum Number of Operations to Move Ones to the End
+
+class Solution(object):
+    def maxOperations(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+
+        count_ones = 0    
+        operations = 0   
+
+        for i in range(len(s) - 1):
+            if s[i] == '1':
+                count_ones += 1
+            if s[i] == '1' and s[i + 1] == '0':
+                operations += count_ones
+        
+        return operations

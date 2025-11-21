@@ -4880,3 +4880,35 @@ class Solution(object):
                 ans += 1
 
         return ans
+
+21/11
+#   1930. Unique Length-3 Palindromic Subsequences
+
+class Solution(object):
+    def countPalindromicSubsequence(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        n = len(s)
+        first = [-1] * 26
+        last = [-1] * 26
+
+        for i, ch in enumerate(s):
+            idx = ord(ch) - ord('a')
+            if first[idx] == -1:
+                first[idx] = i
+            last[idx] = i
+
+        res = 0
+
+        for x in range(26):
+            l = first[x]
+            r = last[x]
+            if l != -1 and l < r:
+                seen = set()
+                for i in range(l + 1, r):
+                    seen.add(s[i])
+                res += len(seen)
+
+        return res

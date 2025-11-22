@@ -4912,3 +4912,15 @@ class Solution(object):
                 res += len(seen)
 
         return res
+
+22/11
+#   3190. Find Minimum Operations to Make All Elements Divisible by Three
+
+class Solution(object):
+    def minimumOperations(self, nums):
+       
+        count = 0
+        for x in nums:
+            if x % 3 != 0:
+                count += 1
+        return count

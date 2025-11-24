@@ -4958,3 +4958,21 @@ class Solution(object):
         remove1 = mod2[0] if mod2 else float('inf')
         remove2 = mod1[0] + mod1[1] if len(mod1) >= 2 else float('inf')
         return total - min(remove1, remove2)
+
+
+24/11
+#   1018. Binary Prefix Divisible By 5
+
+class Solution(object):
+    def prefixesDivBy5(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[bool]
+        """
+        res = []
+        cur = 0     
+        for b in nums:
+            cur = (cur * 2 + b) % 5
+            res.append(cur == 0)
+        
+        return res

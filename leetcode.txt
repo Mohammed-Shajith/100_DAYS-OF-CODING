@@ -5077,3 +5077,12 @@ class Solution(object):
 
         dfs(0, -1)
         return self.ans
+
+29/11
+#   3512. Minimum Operations to Make Array Sum Divisible by K
+
+class Solution(object):
+    def minOperations(self, nums, k):
+        S = sum(nums)
+        r = S % k
+        return r

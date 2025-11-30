@@ -5086,3 +5086,30 @@ class Solution(object):
         S = sum(nums)
         r = S % k
         return r
+
+30/11
+#   1590. Make Sum Divisible by P
+
+class Solution(object):
+    def minSubarray(self, nums, p):
+        
+        total = sum(nums)
+        target = total % p
+
+        if target == 0:
+            return 0
+
+        prefix_mod = 0
+        seen = {0: -1}  
+        res = len(nums)
+
+        for i, x in enumerate(nums):
+            prefix_mod = (prefix_mod + x) % p
+            need = (prefix_mod - target) % p
+
+            if need in seen:
+                res = min(res, i - seen[need])
+
+            seen[prefix_mod] = i
+
+        return res if res < len(nums) else -1

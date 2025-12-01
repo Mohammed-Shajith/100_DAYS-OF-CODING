@@ -5113,3 +5113,6 @@ class Solution(object):
             seen[prefix_mod] = i
 
         return res if res < len(nums) else -1
+
+01/12
+

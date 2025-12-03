@@ -1,6 +1,6 @@
-# 💯 100 Days of Coding Challenge
+# 200 Days of Coding Challenge
 
-Welcome to my **100 Days of Coding Challenge** repository! 
+Welcome to my **200 Days of Coding Challenge** repository! 
 I'm committing to solving coding problems **every day for 100 days** to improve my skills, stay consistent, and prepare for interviews or competitions.
 
 ##  About the Challenge
@@ -191,11 +191,12 @@ I update this repo daily with my solution for each day.
 
 ## 🏁 Goal
 
-To complete 100 days of continuous learning, strengthen algorithmic thinking, and build a powerful problem-solving habit.
+To complete 200 days of continuous learning, strengthen algorithmic thinking, and build a powerful problem-solving habit.
 
 ---
 
 > Feel free to ⭐ the repo and follow my journey! Let's grow together 💪
+
 
 
 

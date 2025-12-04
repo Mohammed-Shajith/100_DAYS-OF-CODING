@@ -5194,3 +5194,27 @@ class Solution(object):
                 rem -= val
                 ans += val * rem
         return ans
+
+04/12
+#   2211. Count Collisions on a Road
+
+class Solution(object):
+    def countCollisions(self, directions):
+     
+        s = directions
+        n = len(s)
+
+        i = 0
+        while i < n and s[i] == 'L':
+            i += 1
+
+        j = n - 1
+        while j >= 0 and s[j] == 'R':
+            j -= 1
+
+        collisions = 0
+        for k in range(i, j + 1):
+            if s[k] != 'S':
+                collisions += 1
+
+        return collisions

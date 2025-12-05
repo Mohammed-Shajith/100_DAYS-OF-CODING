@@ -5218,3 +5218,16 @@ class Solution(object):
                 collisions += 1
 
         return collisions
+
+05/12
+#    3432. Count Partitions with Even Sum Difference
+
+class Solution(object):
+    def countPartitions(self, nums):
+     
+        total = sum(nums)
+
+        if total % 2 == 1:
+            return 0
+
+        return len(nums) - 1

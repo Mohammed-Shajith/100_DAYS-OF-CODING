@@ -5231,3 +5231,46 @@ class Solution(object):
             return 0
 
         return len(nums) - 1
+
+06/12
+#   3578. Count Partitions With Max-Min Difference at Most K
+
+
+class Solution(object):
+    def countPartitions(self, nums, k):
+       
+        from collections import deque
+
+        MOD = 10**9 + 7
+        n = len(nums)
+
+        dp = [0] * (n + 1)
+        pref = [0] * (n + 1)
+
+        dp[0] = 1
+        pref[0] = 1
+
+        maxDQ = deque()
+        minDQ = deque()
+
+        l = 0
+
+        for r in range(n):
+
+            while maxDQ and nums[maxDQ[-1]] <= nums[r]:
+                maxDQ.pop()
+            maxDQ.append(r)
+
+            while minDQ and nums[minDQ[-1]] >= nums[r]:
+                minDQ.pop()
+            minDQ.append(r)
+            while nums[maxDQ[0]] - nums[minDQ[0]] > k:
+                l += 1
+                if maxDQ[0] < l:
+                    maxDQ.popleft()
+                if minDQ[0] < l:
+                    minDQ.popleft()
+            dp[r+1] = (pref[r] - (pref[l-1] if l > 0 else 0)) % MOD
+            pref[r+1] = (pref[r] + dp[r+1]) % MOD
+
+        return dp[n]
